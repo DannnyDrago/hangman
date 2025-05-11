@@ -123,7 +123,11 @@ public class HangmanGameService implements GameService {
 
     return newCurrentWord.toString();
   }
-
+@Override
+public List<HangmanGame> getTop10Games() {
+    return gameRepository.findTop10ByOrderByStartedOnDesc();
+}
+  
   private void updateGameStatusIfFinished(HangmanGame hangmanGame){
     if(hangmanGame.getWord().getName().equals(hangmanGame.getCurrentWord())){
       hangmanGame.setStatus(Status.WON);
@@ -142,5 +146,6 @@ public class HangmanGameService implements GameService {
     }
     return stringBuilder.toString();
   }
-
+  
+  
 }
